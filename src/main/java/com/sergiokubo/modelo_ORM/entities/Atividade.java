@@ -3,7 +3,9 @@ package com.sergiokubo.modelo_ORM.entities;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_atividade")
@@ -19,6 +21,8 @@ public class Atividade {
     private Categoria categoria;
     @OneToMany(mappedBy = "atividade")
     private List<Bloco> blocos = new ArrayList<>();
+    @ManyToMany(mappedBy = "atividades")
+    private Set<Participante> participantes = new HashSet<>();
     public Atividade(){
     }
 
@@ -71,5 +75,9 @@ public class Atividade {
 
     public List<Bloco> getBlocos() {
         return blocos;
+    }
+
+    public Set<Participante> getParticipantes() {
+        return participantes;
     }
 }
